@@ -12,6 +12,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
 const input = form.elements['search-text'];
+const loader = document.querySelector('#loader');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -22,7 +23,7 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  showLoader();
+  loader.classList.remove('hidden');
   clearGallery();
 
   try {
@@ -39,6 +40,6 @@ form.addEventListener('submit', async (e) => {
   } catch (error) {
     iziToast.error({ message: 'Something went wrong. Please try again later.' });
   } finally {
-    hideLoader();
+    loader.classList.add('hidden');
   }
 });
